@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <title>其他内部指令</title>
+</head>
+<body>
+    <h1>其他内部指令实例</h1>
+    <!-- 
+        v-pre 直接显示原始值
+        v-cloak 在vue渲染完指定的整个DOM后才进行显示。它必须和CSS样式一起使用
+     -->
+    <hr>
+    <div id="app">
+        <div v-pre>{{ message }}</div>
+        <div v-cloak>{{ message }}</div>
+        <div>
+            <input type="text" v-model="message">
+        </div>
+        <!-- 只渲染一次 再改变不会渲染 -->
+        <div v-once>{{ message }}</div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: function(){
+                return {
+                    message: 'hello world'
+                    
+                }
+            },
+            computed: {}
+        })
+        
+    </script>
+</body>
+</html>

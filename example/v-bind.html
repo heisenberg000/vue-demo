@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <title>v-bind元素属性绑定实例</title>
+</head>
+<body>
+    <h1>v-bind元素属性绑定实例</h1>
+    <hr>
+    <div id="app">
+        <img :src="imgSrc" alt="" width="400px" height="200px">
+        <p><a :href="webUrl" target="_blank">点击我</a></p>
+        <hr>
+        <div :class="className">1.绑定class</div>
+        <!-- 等于 class='classA' -->
+        <div :class="{classA:isOk}">2.绑定class中判断</div>
+        <div :class="[classA,classB]">3.绑定class中数组</div>
+        <div :class="isOk?classA:classB">4.绑定class中三元运算符</div>
+        <hr>
+        <div>
+            <input type="checkbox" id="isOk" v-model="isOk">
+            <label for="isOk">isOk={{isOk}}</label>
+        </div>
+        <hr>
+        <div :style="{color:red,fontSize:font}">绑定style样式</div>
+        <div :style="styleObject">绑定style对象</div>
+
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: function(){
+                return {
+                    imgSrc: 'http://img.zcool.cn/community/0142135541fe180000019ae9b8cf86.jpg@1280w_1l_2o_100sh.png',
+                    webUrl: 'https://www.baidu.com',
+                    className: 'classA',
+                    isOk: false,
+                    classA: 'classA',
+                    classB: 'classB',
+                    red: 'red',
+                    font: '20px',
+                    styleObject: {
+                        color: 'green',
+                        fontSize: '24px'
+                    }
+                }
+            },
+            computed: {}
+           
+        })
+        
+    </script>
+
+    <style>
+        .classA{
+            color: red;
+        }
+        .classB{
+            font-size: 24px
+        }
+    </style>
+</body>
+</html>

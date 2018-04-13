@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <title>v-on监听事件绑定实例</title>
+</head>
+<body>
+    <h1>v-on监听事件绑定实例</h1>
+    <hr>
+    <div id="app">
+        本场比赛得分：{{ score }}
+        <p><button v-on:click="plus">加分</button>
+           <button @click="minus">减分</button>
+           <input type="text" @keyup.enter="onEnter" v-model="point">
+        </p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: function(){
+                return {
+                    score : 0,
+                    point : 2,        
+                }
+            },
+            computed: {},
+            methods: {
+                plus: function(){
+                    this.score++
+                },
+                minus: function(){
+                    if(this.score>0){
+                        this.score--
+                    }
+                },
+                onEnter: function(){
+                    this.score = this.score + parseInt(this.point)
+                },
+            }
+           
+        })
+        
+    </script>
+</body>
+</html>

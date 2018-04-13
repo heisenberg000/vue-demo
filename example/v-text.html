@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <title>v-text实例</title>
+</head>
+<body>
+    <h1>v-text & v-html 实例</h1>
+    <hr>
+    <div id="app">
+        {{ message }} = <span v-text="message"></span>
+        <br>
+        <!-- v-html直接输出html，尽量少用，防止xss攻击 -->
+        <span>{{ todo }}</span>
+        <span v-html="todo"></span>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: function(){
+                return {
+                    message : 'hello world',
+                    todo : '<h2>v-html test</h2>',
+                }
+            },
+            computed: {}
+           
+        })
+        
+    </script>
+</body>
+</html>
