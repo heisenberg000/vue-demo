@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <title>Component组件-4</title>
+</head>
+<body>
+    <h1>Component组件-4</h1>
+    <hr>
+    <div id="app">
+        <!-- 动态绑定组件 -->
+        <component :is="who"></component>
+        <button @click="changeComponent">切换组件</button>
+    </div>
+   
+    <script>
+        var componentA = {
+            template: `<div  style='color:red'>这是组件A</div>`
+        }
+        var componentB = {
+            template: `<div style='color:pink'>这是组件B</div>`
+        }
+        var componentC = {
+            template: `<div  style='color:green'>这是组件C</div>`
+        }
+        var app = new Vue({
+            el: '#app',
+            data: function(){
+                return {
+                    who: 'componentC'
+                    
+                }
+            },
+            computed: {},
+            methods: {
+                changeComponent: function(){
+                    if(this.who==='componentA'){
+                        this.who = 'componentB'
+                    }else if(this.who==='componentB'){
+                        this.who = 'componentC'
+                    }else{
+                        this.who = 'componentA'
+                    }
+                }
+            },
+            components: {
+              'componentA': componentA,
+              'componentB': componentB,
+              'componentC': componentC,
+            }
+           
+        })
+        
+    </script>
+</body>
+</html>

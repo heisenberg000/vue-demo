@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Extends Option 扩展选项</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  </head>
+  <body>
+    <h1>Extends Option 扩展选项</h1>
+    <hr>
+    <div id="app">
+      {{ message }}
+    </div>
+    <script type="text/javascript">
+      var app = new Vue({
+        el:'#app',
+        data : function(){
+          return {
+            message : 'hello world'
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <title>Component组件-3</title>
+</head>
+<body>
+    <h1>Component组件-3</h1>
+    <hr>
+    <div id="app">
+        <father></father>
+    </div>
+   
+    <script>
+        var childComponent = {
+            template: `<div style='color:green'>我是子组件</div>`
+        }
+        var fatherComponent = {
+            template: `<div style='color:red;font-size:28px'>
+                        <p>我是父组件</p>
+                        <child></child>
+                       </div>`,
+            components: {
+                // 用到了child自定义组件，需要先注册
+                'child': childComponent,
+            }
+        }
+
+        var app = new Vue({
+            el: '#app',
+            data: function(){
+                return {
+                
+                    
+                }
+            },
+            computed: {},
+            components: {
+              'father': fatherComponent,
+            }
+           
+        })
+        
+    </script>
+</body>
+</html>
