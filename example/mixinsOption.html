@@ -9,16 +9,35 @@
     <h1>Mixins 混入选项操作</h1>
     <hr>
     <div id="app">
-      {{ message }}
+      {{ num }}
+      <p><button @click="add">add</button></p>
     </div>
     <script type="text/javascript">
+      var addConsole = {
+        updated: function(){
+          console.log('局部混入对象,数据变成了' + this.num);
+        }
+      }
+      Vue.mixin({
+        updated: function(){
+          console.log('全局混入对象,数据变成了'+this.num)
+        }
+      })
       var app = new Vue({
         el:'#app',
         data : function(){
           return {
-            message : 'hello world'
+            num : 0
           }
-        }
+        },
+        methods: {
+          add: function(){
+            this.num++
+          }
+        },
+        mixins: [
+          addConsole
+        ]
       })
     </script>
   </body>

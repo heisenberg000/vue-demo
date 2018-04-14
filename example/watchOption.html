@@ -9,17 +9,45 @@
     <h1>watch选项 监控数据</h1>
     <hr>
     <div id="app">
-      {{ message }}
+      <p>今日温度：{{ temperature }} ℃</p>
+      <p>穿衣建议：{{ sugguest }}</p>
+      <p><button @click="raise">升高温度</button></p>
+      <p><button @click="reduce">降低温度</button></p>
     </div>
     <script type="text/javascript">
+      var suggestions = ['T恤短袖','夹克长裙','羽绒服'] 
       var app = new Vue({
         el:'#app',
         data : function(){
           return {
-            message : 'hello world'
+            temperature: 14,
+            sugguest: suggestions[0]
+          }
+        },
+        methods: {
+          raise: function(){
+            this.temperature+=5
+          },
+          reduce: function(){
+            this.temperature-=5
+          }
+        },
+        watch: {
+          // newVal 新值 oldVal 前一个值
+          temperature: function(newVal,oldVal){
+            if(newVal >= 26){
+              this.sugguest=suggestions[0]
+            }else if(newVal < 26 && newVal > 0){
+              this.sugguest=suggestions[1]
+            }else{
+              this.sugguest=suggestions[2]
+            }
           }
         }
       })
+      // 实例属性写watch
+      // app.$watch('temperature',function(newVal,oldVal){
+      // })
     </script>
   </body>
 </html>

@@ -2,23 +2,46 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Extends Option 扩展选项</title>
+    <title>Mixins 混入选项操作</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   </head>
   <body>
-    <h1>Extends Option 扩展选项</h1>
+    <h1>Mixins 混入选项操作</h1>
     <hr>
     <div id="app">
-      {{ message }}
+      ${ num }
+      <p><button @click="add">add</button></p>
     </div>
     <script type="text/javascript">
+      var extendsObj = {
+        updated: function(){
+          console.log('扩展的updated方法');
+        },
+        methods: {
+          add: function(){
+            console.log('扩展的add方法');
+            this.num++
+          }
+        }
+      }
       var app = new Vue({
         el:'#app',
         data : function(){
           return {
-            message : 'hello world'
+            num : 0
           }
-        }
+        },
+        methods: {
+          add: function(){
+            console.log('原生方法add')
+            this.num++
+          }
+        },
+        updated: function(){
+          console.log('原生的updated生命周期函数')
+        },
+        extends: extendsObj, //只能是对象，只能有一个扩展
+        delimiters: ['${','}'] // 定义插值形式 ${ num }
       })
     </script>
   </body>

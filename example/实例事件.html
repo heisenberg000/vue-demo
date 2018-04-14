@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>实例属性</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  </head>
+  <body>
+    <h1>实例属性</h1>
+    <hr>
+    <div id="app">
+        {{ num }}
+        <p><button @click="add">add</button></p>
+    </div>
+        <p><button onclick="reduce()">reduce</button></p>
+        <p><button onclick="once()">reduceOnce</button></p>
+        <p><button onclick="off()">closeOff</button></p>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                num: 0
+            },
+            methods: {
+                add: function(){
+                    this.num++
+                }
+            }
+        })
+        app.$on('reduce',function(){
+            console.log('执行reduce方法')
+            this.num--
+        })
+        app.$once('once',function(){
+            console.log('减10操作只执行一次')
+            this.num-=10
+        })
+
+        var reduce = function(){
+            app.$emit('reduce')
+        }
+        var once = function(){
+            app.$emit('once')
+        }
+        var off = function(){
+            console.log('关闭事件')
+            app.$off('reduce')
+        }
+    </script>
+  </body>
+</html>

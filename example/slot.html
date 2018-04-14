@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  </head>
+  <body>
+    <h1>HelloWorld</h1>
+    <hr>
+    <div id="app">
+        <comp>
+            <span style="color:red" slot="blog">{{ blog }}</span>
+            <span slot="name">{{ name }}</span>
+            <span slot="skill">{{ skill }}</span>
+        </comp>
+    </div>
+    <template id="tdd">
+        <div>
+            <p>博客：<slot name='blog'></slot></p>
+            <p>姓名：<slot name='name'></slot></p>
+            <p>技术：<slot name='skill'></slot></p>
+        </div>
+    </template>
+    <script type="text/javascript">
+      // 组件包含模板，模板是组件的一个属性
+      var comp = {
+          template: '#tdd',
+      }
+      var app = new Vue({
+        el:'#app',
+        data : function(){
+          return {
+              blog: 'aaa',
+              name: 'bbb',
+              skill: 'ccc',
+          }
+        },
+        components: {
+            comp: comp
+        }
+      })
+    </script>
+  </body>
+</html>

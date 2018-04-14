@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>实例方法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  </head>
+  <body>
+    <h1>实例方法</h1>
+    <hr>
+    <div id="app">
+    </div>
+    <button onclick="dest()">销毁</button>
+    <button onclick="reload()">更新</button>
+    <button onclick="tick()">更改数据</button>
+
+    <script type="text/javascript">
+        var extendObj = Vue.extend({
+            template:`<p>{{ pwd }}</p>`,
+            data: function(){
+                return {
+                    pwd: 'hello world'
+                }
+            },
+            mounted: function(){
+                console.log('mounted 被创建');
+            },
+            destroyed: function(){
+                console.log('扩展被销毁');
+            },
+            updated: function(){
+                console.log('扩展被更新')
+            }
+        })
+        var vm = new extendObj().$mount('#app')
+        var dest = function(){
+            vm.$destroy()
+        }
+        var reload = function(){
+            vm.$forceUpdate()
+        }
+        var tick = function(){
+            vm.pwd = 'update pwd info'
+            vm.$nextTick(function(){
+                console.log('pwd更新完被调用');
+            })
+        }
+
+    </script>
+  </body>
+</html>

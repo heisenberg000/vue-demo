@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>实例属性</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  </head>
+  <body>
+    <h1>实例属性</h1>
+    <hr>
+    <div id="app">
+      {{ message }}
+    </div>
+    <script type="text/javascript">
+      var app = new Vue({
+        el:'#app',
+        data : function(){
+          return {
+            message : 'hello world'
+          }
+        },
+        mounted: function(){
+            // 在mounted和updated内才能使用jquery
+            $("#app").html('vue配合jquery使用')
+        },
+        methods: {
+            add: function(){
+                console.log('调用vue构造器内部的add方法');
+            }
+        }
+      })
+      // 调用成功
+      app.add()
+    </script>
+  </body>
+</html>
